@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Afterlife Coin Bank Transfer</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Afterlife Coin Bank Transfer</h1>
+    <form id="sendTokenForm">
+      <div class="form-group">
+        <label for="tokenId">Currency Type:</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="tokenid" id="tokenid1" value="98" checked>
+            <label class="form-check-label" for="tokenid1">Afterlife Penny</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="tokenid" id="tokenid2" value="100">
+            <label class="form-check-label" for="tokenid2">Hunter's Gold</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="tokenid" id="tokenid3" value="110">
+            <label class="form-check-label" for="tokenid3">Blood Koin</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Currency</button>
+    </form>
+    <br>
+    <div id="balances"></div>
+    <br>
+    <div id="message"></div>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
