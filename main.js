@@ -18,7 +18,6 @@ window.addEventListener('load', async () => {
         } else {
            document.getElementById('alert_message').innerHTML = '';
 	         document.getElementById('connectButton').innerHTML = 'Show total balance';
-           document.getElementById('txbutton').disabled = false;
 	      }
         // Request account access
         await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -63,6 +62,7 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
 
 // Initialize the app
 async function initApp() {
+  document.getElementById('txbutton').disabled = false;
    // Get the balances of the three token types
   tokenContract.balanceOf(web3.eth.defaultAccount, '98', function (err, res){document.getElementById('pennycount').innerHTML = res.c[0];});
   tokenContract.balanceOf(web3.eth.defaultAccount, '100', function (err, res){document.getElementById('shillcount').innerHTML = res.c[0];});
