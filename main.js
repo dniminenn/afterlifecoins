@@ -53,6 +53,7 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
                 document.getElementById('alert_message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful! <a href="https://ftmscan.com/tx/'+txhash+'">'+txhash+'</a></div>';
             } else
                 document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Transfer failed.</div>';
+            }
         });
   } else {
       document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Wrong chain, switch to Fantom</div>';
