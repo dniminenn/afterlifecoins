@@ -1,42 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Afterlife Coin Bank Transfer</title>
+    <title>Danetron3030's Afterlife Coin Bank</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Afterlife Coin Bank Transfer</h1>
-    <button id="connectButton" class="btn btn-primary">Connect</button>
-    <form id="sendTokenForm">
-      <div class="form-group">
-        <label for="tokenId">Currency Type:</label>
-        <div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="tokenid" id="tokenid1" value="98" checked>
-            <label class="form-check-label" for="tokenid1">Afterlife Penny</label>
+  <script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.min.js"></script>
+    <div class="container">
+      <h1>Danetron3030's Afterlife Currency</h1>
+      <p>Easily transfer coins to the Afterlife Coinbank (pre-populated address) or to other persons.</p>
+      <div id="connect">
+        <button id="connectButton" class="btn btn-primary">Connect</button>
+      </div>
+      <div id="alert"></div>
+      <div><p>Total value of your Afterlife Currency: <span id="totalcount">Click "Show total balance"</span></p></div>
+      <form id="sendTokenForm">
+        <div class="form-group">
+          <label for="tokenid">Currency Type</label>
+	  <div><p></p></div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tokenid" id="token98" value="98" checked>
+            <label class="form-check-label" for="token98">
+              (1) Grave Pennies <b><span id="pennycount"></span></b>
+            </label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="tokenid" id="tokenid2" value="100">
-            <label class="form-check-label" for="tokenid2">Hunter's Gold</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tokenid" id="token100" value="100">
+            <label class="form-check-label" for="token100">
+              (2) Hunter's Gold <b><span id="shillcount"></span></b>
+            </label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="tokenid" id="tokenid3" value="110">
-            <label class="form-check-label" for="tokenid3">Blood Koin</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tokenid" id="token110" value="110">
+            <label class="form-check-label" for="token110">
+              (20) Blood Koins <b><span id="koincount"><span></b>
+            </label>
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="amount">Amount:</label>
-        <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Send Currency</button>
-    </form>
-    <br>
-    <div id="balances"></div>
-    <br>
-    <div id="message"></div>
-    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+	<div class="form-group">
+          <p></p>
+          <label for="rcvaddress">Recipient</label>
+          <input type="text" style="width: 300pt;" class="form-control" id="rcvaddress" name="rcvaddress"  value="0x3cc35873a61D925Ac46984f8C4F85d8fa6A892eF">
+        </div>
+        <div class="form-group">
+	  <p></p>
+          <label for="amount">Amount</label>
+          <input type="number" class="form-control" id="amount" name="amount" min="1" value="1">
+        </div>
+        <button type="submit" class="btn btn-primary">Transfer</button>
+      </form>
+    </div>
+    <script src="afterlife.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
