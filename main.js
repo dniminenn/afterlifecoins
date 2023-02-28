@@ -13,6 +13,7 @@ window.addEventListener('load', async () => {
         // Check if the user is connected to the correct network
         const chainId = await ethereum.request({ method: 'eth_chainId' });
         if (chainId !== '0xfa') {
+          document.getElementById('txbutton').disabled = true;
           document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Please connect to the Fantom Opera network to use this dApp.</div>';
           return;
         } else {
@@ -62,7 +63,6 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
 
 // Initialize the app
 async function initApp() {
-  document.getElementById('txbutton').disabled = false;
    // Get the balances of the three token types
   tokenContract.balanceOf(web3.eth.defaultAccount, '98', function (err, res){document.getElementById('pennycount').innerHTML = res.c[0];});
   tokenContract.balanceOf(web3.eth.defaultAccount, '100', function (err, res){document.getElementById('shillcount').innerHTML = res.c[0];});
