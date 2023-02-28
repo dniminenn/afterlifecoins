@@ -52,7 +52,7 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
             if(!err) {
                 var txHash = res.transaction.Hash;
                 document.getElementById('alert_message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful! <a href="https://ftmscan.com/tx/'+txhash+'">'+txhash+'</a></div>';
-            } else
+            } else {
                 document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Transfer failed.</div>';
             }
         });
