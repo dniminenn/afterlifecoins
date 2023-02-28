@@ -49,7 +49,7 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
   const amount = event.target.elements.amount.value;
   // Call the transfer function of the ERC1155 token contract
   if(fantom === '0xfa') {
-        tokenContract.safeTransferFrom(web3.eth.defaultAccount, recipientAddress, selectedTokenId, amount, [], function(err, res) {
+        await tokenContract.safeTransferFrom(web3.eth.defaultAccount, recipientAddress, selectedTokenId, amount, [], function(err, res) {
             if(!err) {
                 var txhash = res.transactionHash;
                 document.getElementById('alert_message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful! <a href="https://ftmscan.com/tx/'+txhash+'">'+txhash+'</a></div>';
