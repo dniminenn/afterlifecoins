@@ -39,7 +39,7 @@ window.addEventListener('load', async () => {
 // Handle form submission
 document.getElementById('sendTokenForm').addEventListener('submit', async (event) => {
   event.preventDefault();
-  const chainId = await ethereum.request({ method: 'eth_chainId' });
+  const fantom = await ethereum.request({ method: 'eth_chainId' });
   // Get the selected token ID
   const selectedTokenId = document.querySelector('input[name="tokenid"]:checked').value;
   // Get the recipient address
@@ -47,7 +47,7 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
   // Get the amount
   const amount = event.target.elements.amount.value;
   // Call the transfer function of the ERC1155 token contract
-  if(chainId === '0xfa') {
+  if(fantom === '0xfa') {
         tokenContract.safeTransferFrom(web3.eth.defaultAccount, recipientAddress, selectedTokenId, amount, [], function(err, res) {
             if(!err) {
                 var txHash = res.transaction.Hash;
