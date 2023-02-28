@@ -13,7 +13,7 @@ window.addEventListener('load', async () => {
         // Check if the user is connected to the correct network
         const chainId = await ethereum.request({ method: 'eth_chainId' });
         if (chainId !== '0xfa') {
-          document.getElementById('message').innerHTML = '<div class="alert alert-danger" role="alert">Please connect to the Fantom Opera network to use this dApp.</div>';
+          document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Please connect to the Fantom Opera network to use this dApp.</div>';
           return;
         } else {
 	  document.getElementById('connectButton').innerHTML = 'Show total balance';
@@ -25,12 +25,12 @@ window.addEventListener('load', async () => {
         initApp();
       } catch (error) {
         console.error(error);
-        document.getElementById('message').innerHTML = '<div class="alert alert-danger" role="alert">Failed to connect to MetaMask.</div>';
+        document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Failed to connect to MetaMask.</div>';
       }
     });
   } else {
     // If MetaMask is not installed or not running, display an error
-    document.getElementById('message').innerHTML = '<div class="alert alert-danger" role="alert">Please install and connect to MetaMask to use this dApp.</div>';
+    document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Please install and connect to MetaMask to use this dApp.</div>';
   }
 });
 
@@ -46,11 +46,10 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
   // Call the transfer function of the ERC1155 token contract
   tokenContract.safeTransferFrom(web3.eth.defaultAccount, recipientAddress, selectedTokenId, amount, [], function(err, res) {
       if(!err)
-         var txHash = res.transactionHash;
-         document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful! Transaction hash: \
-         <a href="https://ftmscan.com/tx/' + txHash + '">' + txHash + '</div>';
+         var txHash = res.transaction.Hash;
+         document.getElementById('alert_message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful! <a href="https://ftmscan.com/tx/'+txhash+'">'+txhash+'</a></div>';
       else
-         document.getElementById('message').innerHTML = '<div class="alert alert-danger" role="alert">Transfer failed.</div>';
+         document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Transfer failed.</div>';
   });
 });
 
