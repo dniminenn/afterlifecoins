@@ -16,8 +16,8 @@ window.addEventListener('load', async () => {
           document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Please connect to the Fantom Opera network to use this dApp.</div>';
           return;
         } else {
-	  document.getElementById('connectButton').innerHTML = 'Show total balance';
-	}
+	         document.getElementById('connectButton').innerHTML = 'Show total balance';
+	      }
         // Request account access
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         // Set up web3 object
@@ -37,6 +37,7 @@ window.addEventListener('load', async () => {
 // Handle form submission
 document.getElementById('sendTokenForm').addEventListener('submit', async (event) => {
   event.preventDefault();
+  const chainId = await ethereum.request({ method: 'eth_chainId' });
   // Get the selected token ID
   const selectedTokenId = document.querySelector('input[name="tokenid"]:checked').value;
   // Get the recipient address
@@ -44,13 +45,17 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
   // Get the amount
   const amount = event.target.elements.amount.value;
   // Call the transfer function of the ERC1155 token contract
-  tokenContract.safeTransferFrom(web3.eth.defaultAccount, recipientAddress, selectedTokenId, amount, [], function(err, res) {
-      if(!err) {
-         var txHash = res.transaction.Hash;
-         document.getElementById('alert_message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful! <a href="https://ftmscan.com/tx/'+txhash+'">'+txhash+'</a></div>';
-      } else
-         document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Transfer failed.</div>';
-  });
+  if(chainId !== '0xfa') {
+        tokenContract.safeTransferFrom(web3.eth.defaultAccount, recipientAddress, selectedTokenId, amount, [], function(err, res) {
+            if(!err) {
+                var txHash = res.transaction.Hash;
+                document.getElementById('alert_message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful! <a href="https://ftmscan.com/tx/'+txhash+'">'+txhash+'</a></div>';
+            } else
+                document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Transfer failed.</div>';
+        });
+  } else {
+      document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Wrong chain, switch to Fantom</div>';
+  }
 });
 
 // Initialize the app
