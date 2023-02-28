@@ -4,14 +4,6 @@ const tokenContractAddress = '0x8d9Ab6Aa28720a28D75CA157F7E16E9109520bAd';
 const afterlife = web3.eth.contract(afterlifeAbi);
 const tokenContract = afterlife.at(tokenContractAddress);
 
-function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
-}
-
 window.addEventListener('load', async () => {
   // Wait for MetaMask to load
   if (typeof window.ethereum !== 'undefined') {
@@ -54,7 +46,9 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
   // Call the transfer function of the ERC1155 token contract
   tokenContract.safeTransferFrom(web3.eth.defaultAccount, recipientAddress, selectedTokenId, amount, [], function(err, res) {
       if(!err)
-         document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful!</div>';
+         var txHash = res.transactionHash;
+         document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful! Transaction hash: \
+         <a href="https://ftmscan.com/tx/' + txHash + '">' + txHash + '</div>';
       else
          document.getElementById('message').innerHTML = '<div class="alert alert-danger" role="alert">Transfer failed.</div>';
   });
@@ -72,4 +66,3 @@ async function initApp() {
   var total = pennies + shills + koins;
   if(!isNaN(total)) { document.getElementById('totalcount').innerHTML = total; }
 }
-
