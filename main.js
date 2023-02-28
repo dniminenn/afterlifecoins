@@ -45,7 +45,7 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
   // Get the amount
   const amount = event.target.elements.amount.value;
   // Call the transfer function of the ERC1155 token contract
-  if(chainId !== '0xfa') {
+  if(chainId === '0xfa') {
         tokenContract.safeTransferFrom(web3.eth.defaultAccount, recipientAddress, selectedTokenId, amount, [], function(err, res) {
             if(!err) {
                 var txHash = res.transaction.Hash;
