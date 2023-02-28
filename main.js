@@ -52,7 +52,7 @@ document.getElementById('sendTokenForm').addEventListener('submit', async (event
         await tokenContract.safeTransferFrom(web3.eth.defaultAccount, recipientAddress, selectedTokenId, amount, [], function(err, res) {
             if(!err) {
                 var txhash = res;
-                document.getElementById('alert_message').innerHTML = '<div class="alert alert-success" role="alert">Transfer successful! <a href="https://ftmscan.com/tx/'+txhash+'">'+txhash+'</a></div>';
+                document.getElementById('alert_message').innerHTML = '<div class="alert alert-success" role="alert">Transfer initiated! <a href="https://ftmscan.com/tx/'+txhash+'">'+txhash+'</a></div>';
             } else {
                 document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Transfer failed.</div>';
             }
