@@ -16,6 +16,7 @@ window.addEventListener('load', async () => {
           document.getElementById('alert_message').innerHTML = '<div class="alert alert-danger" role="alert">Please connect to the Fantom Opera network to use this dApp.</div>';
           return;
         } else {
+          document.getElementById('alert_message').innerHTML = '';
 	         document.getElementById('connectButton').innerHTML = 'Show total balance';
 	      }
         // Request account access
